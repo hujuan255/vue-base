@@ -8,6 +8,15 @@
   <!--引入vue框架 -->
   <script src="https://unpkg.com/vue@3.0.2"></script>
   <style>
+    body{
+      background-color: #eee;
+      max-width: 960px;
+      margin: 20px auto;
+    }
+    p,h3,ul{
+      margin: 0;
+      padding: 0;
+    }
     .box{
       width: 200px;
       height: 200px;
@@ -15,7 +24,25 @@
       margin: 50px 0;
       text-align: center;
       line-height: 200px;
-
+    }
+    li{
+      /* 取消li的样式 */
+      list-style-type: none;
+      background: #fff;
+      margin: 20px auto;
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    li.fav{
+      background: rgb(232, 98, 98);
+      color:#fff;
+    }
+   li img{
+      width: 100px;
+      height: 100px;
     }
   </style>
 </head>
@@ -40,6 +67,19 @@
     <div class="box" @mouseleave="handelEvent">鼠标离开</div>
     <div class="box" @dblclick="handelEvent">双击</div>
     <div class="box" @mousemove="handelMousemove">当前鼠标的坐标：{{x}}-{{y}}</div>
+    <div v-show="showBook">
+      <ul>
+        <!-- 动态添加class属性，值为键值（属性名：属性值） -->
+        <li v-for="book in filterBooks" :class="{fav:book.isFav}" @click="changeFav(book)">
+          <!-- 路径的动态绑定v-bind 简写为： -->
+          <img :src="book.imgUrl" alt="book.title">
+          <h3>{{book.title}}</h3>
+          <p>{{book.author}}</p>
+
+        </li>
+      </ul>
+    </div>
+
   </div>
   <!-- 引入js文件 -->
   <script src="./app.js"></script>

@@ -11,6 +11,33 @@ const app = Vue.createApp({
       // 定义坐标x,y的初始值
       x: 0,
       y: 0,
+      //books对象
+      books: [
+        {
+          title: '见识',
+          author: '吴军',
+          imgUrl: '/assets/2.jpg',
+          isFav: true
+        },
+        {
+          title: '格局',
+          author: '吴军',
+          imgUrl: '/assets/4.jpg',
+          isFav: false
+        },
+        {
+          title: '异类',
+          author: '马尔科姆·格拉德威尔',
+          imgUrl: '/assets/1.jpg',
+          isFav: true
+        },
+        {
+          title: '引爆点',
+          author: '马尔科姆·格拉德威尔',
+          imgUrl: '/assets/3.jpg',
+          isFav: true
+        },
+      ]
     }
   },
   methods: {
@@ -38,6 +65,17 @@ const app = Vue.createApp({
       //设置鼠标的坐标
       this.x = e.offsetX;
       this.y = e.offsetY;
+    },
+    //点击li改变fav的状态
+    changeFav(book) {
+      book.isFav = !book.isFav;
+    },
+  },
+  //计算属性的使用
+  computed: {
+    //过滤喜欢的书籍
+    filterBooks() {
+      return this.books.filter((book) => book.isFav)
     }
   },
 })
