@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!--引入vue框架 -->
+  <script src="https://unpkg.com/vue@3.0.2"></script>
+  <style>
+    .box{
+      width: 200px;
+      height: 200px;
+      background: #ddd;
+      margin: 50px 0;
+      text-align: center;
+      line-height: 200px;
+
+    }
+  </style>
+</head>
+<body>
+  <h1>hello</h1>
+  <div id="app">
+    <p v-if="showBook">{{book}}-{{author}}-{{age}}</p>
+    <!-- v-on:clicl 的简写@clcik -->
+    <button @click="age++">年龄增长</button>
+    <button v-on:click = "age--">年龄减小</button>
+    <!-- 传参 -->
+    <div @click="changeBook('geju')">改变书名</div>
+    <button @click="toggleShowBook">
+      <!-- <span v-if="showBook">隐藏书籍</span>
+      <span v-if="!showBook">显示书籍</span> -->
+      <span v-if="showBook">隐藏书籍</span>
+      <span v-else>显示书籍</span>
+    </button>
+    <div v-show="showBook">当前显示的书《{{book}}》</div>
+    <!-- v-show 与 v-if v-show只是将css的dispaly设置为none，而v-if则从dom中删除。在试图中v-show的性能更好 -->
+    <div class="box" @mouseover="handelEvent($event,5)">鼠标悬停</div>
+    <div class="box" @mouseleave="handelEvent">鼠标离开</div>
+    <div class="box" @dblclick="handelEvent">双击</div>
+    <div class="box" @mousemove="handelMousemove">当前鼠标的坐标：{{x}}-{{y}}</div>
+  </div>
+  <!-- 引入js文件 -->
+  <script src="./app.js"></script>
+</body>
+</html>
